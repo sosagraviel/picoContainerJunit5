@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bcb94440-3481-4b4f-8021-edff62ba64c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../CrossBrowserTesting.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Basic/Functionalities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Basic/Locators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Basic/ManejoDeAlertas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Basic/ManejoTablas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Basic/SelectExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Intermediate/ActionsExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Intermediate/DownloadFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Intermediate/IframeExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Intermediate/JavaScriptExecutorExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/LocatorsAndFunctions/Intermediate/UploadArchivo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/AnnotationsTestNG.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/CrossBrowserTesting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/CustomListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/CustomReporter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/DataProviderExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/DataProviderUsage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/TestNGFramework/TestNGUsages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/Utilities/Utilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/Utilities/WaitUtilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/Waits/WaitsInSelenium.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Base/BaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Pages/BasePage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Pages/LandingPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Pages/LoginPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Pages/MainPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Test/SuccessLoginTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Test/UnsuccessLoginTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Utilities/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProject/Utilities/Utilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProjectRaw/Test/Login/SuccessLoginTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/goEventProjectRaw/Test/Login/UnsuccessLoginTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/resources/config/config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/resources/data/inicioSesionInvalido.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/resources/data/inicioSesionValido.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/resources/wget.exe" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2e0c7LQpp6cEd0OK4t77CAkGDZC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/gravielsosa/Desktop/graviel/decemberlabs/QA/QubikaSeleniumWorkshop/qa-selenium-workshop/basicinter",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-corretto-21.0.2-f644763e9732-d6553c93" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bcb94440-3481-4b4f-8021-edff62ba64c8" name="Changes" comment="" />
+      <created>1711044767393</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711044767393</updated>
+      <workItem from="1711044768486" duration="21000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Postman-example
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: testdb
+platform:
+  jwtSecret: publishSecretKey
+  jwtExpirationMs: 86400000
+  secretPassword: WorkShopDemoPassword
