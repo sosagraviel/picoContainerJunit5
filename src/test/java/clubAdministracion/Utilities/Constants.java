@@ -1,10 +1,7 @@
-package goEventProject.Utilities;
-
-import java.util.ArrayList;
-import java.util.List;
+package clubAdministracion.Utilities;
 
 public class Constants{
-    public static final String URL = "https://goevent-platform.vercel.app/";
+    public static final String URL = "https://club-administration.qa.qubika.com/#/auth/login";
 
     //Esta variable la utilizo para agregar a los usuarios que van a formar parte de los test
     public static String JSONPRINT = "J";
@@ -35,5 +32,5 @@ public class Constants{
     public static final String EMPTY = "";
     public static final String LINE_JUMP = "\n";
 
-    public static final String[] CLERK_TEST_OTP_CODE = {"4", "2", "4", "2", "4", "2"};
+    public static final String USR_PASSWORD_INCORRECT_ERROR_MESSAGE = "Usuario o contraseña incorrectos";
 }

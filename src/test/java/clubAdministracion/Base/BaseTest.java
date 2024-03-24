@@ -1,6 +1,6 @@
-package goEventProject.Base;
+package clubAdministracion.Base;
 
-import goEventProject.Pages.BasePage;
+import clubAdministracion.Pages.BasePage;
 
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import goEventProject.Utilities.Constants;
+import clubAdministracion.Utilities.Constants;
 import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import goEventProject.Utilities.Utilities;
+import clubAdministracion.Utilities.Utilities;
 
 public class BaseTest extends BasePage {
     @BeforeTest
@@ -41,7 +41,8 @@ public class BaseTest extends BasePage {
     }
     @AfterMethod
     public void closeDriver() throws InterruptedException {
-        Thread.sleep(100);
+        Thread.sleep(1000);
+        driver.close();
         if (driver != null) {
             driver.quit();
 

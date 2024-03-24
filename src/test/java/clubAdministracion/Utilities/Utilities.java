@@ -1,6 +1,6 @@
-package goEventProject.Utilities;
+package clubAdministracion.Utilities;
 
-import goEventProject.Pages.BasePage;
+import clubAdministracion.Pages.BasePage;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DataFormatter;

@@ -1,4 +1,4 @@
-package goEventProject.Pages;
+package clubAdministracion.Pages;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.io.IOException;
@@ -14,19 +15,18 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 
-import goEventProject.Utilities.Utilities;
+import clubAdministracion.Utilities.Utilities;
 
 public class BasePage {
     public ChromeOptions chromeOptions;
     public WebDriver driver;
-    public LandingPage landingPage;
     public LoginPage loginPage;
     public MainPage mainPage;
     protected static Utilities utilities;
     public static Properties prop;
-    public LandingPage startTest() {
-        landingPage = new LandingPage(driver);
-        return landingPage;
+    public LoginPage startTest() {
+        loginPage = new LoginPage(driver);
+        return loginPage;
 
     }
     public void initElements(WebDriver remoteDriver, Object aPage) {
@@ -95,4 +95,9 @@ public class BasePage {
         waitParticular.until(ExpectedConditions.textToBePresentInElement(aListOfWebElements.get(pos), textToAppear));
 
     }
+    public String getAttributeValue(WebElement anElement, String aValue){
+        return anElement.getAttribute(aValue);
+
+    }
+
 }

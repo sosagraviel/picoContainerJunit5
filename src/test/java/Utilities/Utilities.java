@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import goEventProject.Pages.BasePage;
+import clubAdministracion.Pages.BasePage;
 import org.apache.commons.io.FileUtils;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
