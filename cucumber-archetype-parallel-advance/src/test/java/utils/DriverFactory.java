@@ -1,8 +1,8 @@
 package utils;
 
-import hellocucumber.Pages.Category.CategoryPage;
-import hellocucumber.Pages.Login.LoginPage;
-import hellocucumber.Pages.MenuPage;
+import workshopcucumberadvance.Pages.Category.CategoryPage;
+import workshopcucumberadvance.Pages.Login.LoginPage;
+import workshopcucumberadvance.Pages.MenuPage;
 import io.cucumber.java.Scenario;
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
