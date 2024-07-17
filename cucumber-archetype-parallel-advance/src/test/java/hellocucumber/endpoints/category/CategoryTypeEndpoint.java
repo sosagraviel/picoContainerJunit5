@@ -29,7 +29,7 @@ public class CategoryTypeEndpoint {
 	 * this addCategory method prepares the category payload and name to pass through the
 	 * getResponseCategoryType method by parameters
 	 *
-	 * @return
+	 * @return the response of the request
 	 */
 	public Response addCategory() {
 		CategoryTypePayload categoryPayload = new CategoryTypePayload("Automation Category");
@@ -57,7 +57,7 @@ public class CategoryTypeEndpoint {
 	 * this deleteCategory method send a deleted request to delete a category by id
 	 *
 	 * @param categoryTypeId it's the category id
-	 * @return
+	 * @return the response of the request
 	 */
 	public Response deleteCategory(String categoryTypeId) {
 		return this.requestFactory.makeRequest().body("{}")

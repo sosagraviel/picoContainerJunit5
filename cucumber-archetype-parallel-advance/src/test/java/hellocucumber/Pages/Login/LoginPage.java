@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import utils.HelperMethods;
+import utils.ScreenshotUtils;
 import utils.constants.Constant;
 import utils.constants.DataConstant;
 import utils.enums.UserRole;
@@ -42,6 +43,7 @@ public class LoginPage extends BasePage {
 
 	public void completeEmail(String role) {
 		helperMethods.sendKeysInElement(EMAIL_FIELD, role);
+		ScreenshotUtils.saveScreenshot(helperMethods.getDriver());
 	}
 
 	public void completePassword(UserRole role) {

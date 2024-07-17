@@ -250,41 +250,6 @@ public class HelperMethods {
 		HelperMethods.browsers = browsers;
 	}
 
-	/**
-	 * This getPostResponse method triggers the post-request
-	 *
-	 * @param payload it's the payload related with the update goal
-	 * @return miss
-	 */
-	public Response getPostResponse(Object payload) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			String payloadFormatted = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(payload);
-			return requestFactory.makeRequest(2.0f).body("[\n" + payloadFormatted + "\n]")
-							.post(DataConstantQueries.PATH_FOR_MEMBER);
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException(e.getMessage());
-		}
-	}
-
-	/**
-	 * This getPutResponse method triggers the put request
-	 *
-	 * @param payload it's the payload related with the update goal
-	 * @param id      it's the id necessary to complete the request path
-	 * @return the response related with the request
-	 */
-	public Response getPutResponse(Object payload, Long id, boolean isPayloadSurroundBrackets) {
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			String payloadFormatted = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(payload);
-			String payloadSurrounded = isPayloadSurroundBrackets ? "[\n" + payloadFormatted + "\n]" : payloadFormatted;
-			return requestFactory.makeRequest(2.0f).body(payloadSurrounded)
-							.put(DataConstantQueries.PATH_FOR_MEMBER + id.toString());
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException(e.getMessage());
-		}
-	}
 
 	/**
 	 * Gets the current timestamp as a string.
@@ -296,193 +261,8 @@ public class HelperMethods {
 		return String.valueOf(date.getTime());
 	}
 
-	/**
-	 * Checks and deletes the given email based on the specified email type and user ID.
-	 *
-	 * @param emailToDelete the type of email to delete
-	 * @param firmUserId    the user ID associated with the email
-	 */
-	public void checkByEmail(TargetEmailToDelete emailToDelete, Long firmUserId) {
-		switch (emailToDelete) {
-			case planPortfolioInvestment ->
-							removeEmailIfExist(DataConstantQueries.GET_PORTFOLIO_INVESTMENT_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case portfolioInvestmentHHInfoAWS ->
-							removeEmailIfExist(DataConstantQueries.GET_INVESTMENT_FROM_HH_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case portfolioInvestmentSidePanelAWS ->
-							removeEmailIfExist(DataConstantQueries.GET_INVESTMENT_FROM_SIDE_PANEL_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case firmDistributionSettings ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_DISTRIBUTION_SETTINGS_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case distributionOther ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_DISTRIBUTION_SETTINGS_OTHER_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case distributionQualifiedRetirement ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_DISTRIBUTION_SETTINGS_QUALIFIED_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case distributionRoth ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_DISTRIBUTION_SETTINGS_ROTH_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case distributionInherited ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_DISTRIBUTION_SETTINGS_INHERITED_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case distributionTaxable ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_DISTRIBUTION_SETTINGS_TAXABLE_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case portfolioInvestmentWarningsAWS ->
-							removeEmailIfExist(DataConstantQueries.GET_INVESTMENT_FROM_WARNINGS_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case planPortfolioBanking ->
-							removeEmailIfExist(DataConstantQueries.GET_PORTFOLIO_BANKING_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case planPortfolioOtherAssets ->
-							removeEmailIfExist(DataConstantQueries.GET_PORTFOLIO_OTHER_ASSET_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case mfa -> removeEmailIfExist(DataConstantQueries.GET_HH_MFA_PATH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case modelAllocations ->
-							removeEmailIfExist(DataConstantQueries.GET_HH_MODEL_ALLOCATION_PATH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case modelAllocationFromSettings ->
-							removeEmailIfExist(DataConstantQueries.GET_HH_MODEL_ALLOCATION_FROM_SETTINGS_PATH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case modelAllocationFromHh ->
-							removeEmailIfExist(DataConstantQueries.GET_HH_MODEL_ALLOCATION_FROM_HH_PATH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case taxLab ->
-							removeEmailIfExist(DataConstantQueries.GET_TAX_CENTER_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case activateLink ->
-							removeEmailIfExist(DataConstantQueries.GET_HH_ACTIVATE_LINK_PATH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case resetPassword ->
-							removeEmailIfExist(DataConstantQueries.GET_HH_RESET_PASSWORD_PATH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case member ->
-							removeEmailIfExist(DataConstantQueries.GET_MEMBER_PATH_QUERY_PRE + firmUserId + DataConstantQueries.GET_MEMBER_PATH_QUERY, DataConstantQueries.DELETE_MEMBER_PATH);
-			case firmFlatEditMember ->
-							removeEmailIfExist(DataConstantQueries.GET_MEMBER_PATH_QUERY_PRE + firmUserId + DataConstantQueries.GET_MEMBER_EDITED_PATH_QUERY, DataConstantQueries.DELETE_MEMBER_PATH);
-			case firmFlatDeleteMember ->
-							removeEmailIfExist(DataConstantQueries.GET_MEMBER_PATH_QUERY_PRE + firmUserId + DataConstantQueries.GET_MEMBER_DELETED_PATH_QUERY, DataConstantQueries.DELETE_MEMBER_PATH);
-			case firmFlatCancelMember ->
-							removeEmailIfExist(DataConstantQueries.GET_MEMBER_PATH_QUERY_PRE + firmUserId + DataConstantQueries.GET_MEMBER_CANCEL_PATH_QUERY, DataConstantQueries.DELETE_MEMBER_PATH);
-			case integrations -> removeEmailIfExist(DataConstantQueries.DELETE_INTEGRATION_PATH, DataConstant.INTEGRATIONS);
-			case reportCenter ->
-							removeEmailIfExist(DataConstantQueries.GET_REPORT_CENTER_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case signUp ->
-							removeEmailIfExist(DataConstantQueries.GET_FIRM_SIGNUP_PATH_QUERY, DataConstantQueries.DELETE_FIRM_PATH);
-			case importHousehold ->
-							removeEmailIfExist(DataConstantQueries.GET_IMPORTED_HH_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case lifeHub ->
-							removeEmailIfExist(DataConstantQueries.GET_LIFE_HUB_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case onlyLifeHub ->
-							removeEmailIfExist(DataConstantQueries.GET_ONLY_LIFE_HUB_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case planIncomeSocialSecurity ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_INCOME_S_SECURITY_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case ssEstimatePrimaryInsurance ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_INCOME_S_SECURITY_ESTIMATE_PRIMARY_INSURANCE_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case ssAllBenefitsMethods ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_INCOME_S_SECURITY_ALL_BENEFIT_METHODS_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case planDashboard ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_DASHBOARD_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case adjustmentDashboard ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_ADJUSTMENT_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case balanceDashboard ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_BALANCE_DASHBOARD_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case spendingCapacityDashboard ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_BALANCE_SPENDING_CAPACITY_DASHBOARD_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case investmentCostBasis ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_INVESTMENT_COST_BASIS_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case otherIncomeTaxTreatment ->
-							removeEmailIfExist(DataConstantQueries.GET_PLAN_OTHER_INCOME_TAX_TREATMENT_EMAILS_QUERY, DataConstantQueries.DELETE_HH_PATH);
-			case accountIncluded -> testEmail(accountIncluded.name(), DataConstantQueries.DELETE_HH_PATH);
-		}
-	}
-
-	public void testEmail(String hhPath, String hhPathToDelete) {
-		String query = generateEmailQuery(hhPath);
-		removeEmailIfExist(query, hhPathToDelete);
-	}
-
 	public String generateEmailQuery(String hhPath) {
 		return DataConstantQueries.GET_EMAILS_QUERY_PREFIX + hhPath + DataConstantQueries.GET_EMAILS_QUERY;
-	}
-
-	/**
-	 * Login with a specific role, remove an email, and set an email.
-	 *
-	 * @param hhPath         The path to the email you want to delete.
-	 * @param hhPathToDelete The path to the email you want to delete.
-	 */
-	public void removeEmailIfExist(String hhPath, String hhPathToDelete) {
-		removeEmail(hhPath, hhPathToDelete);
-	}
-
-	public void removeEmailIfExistExample(String hhPath, String hhPathToDelete) {
-		removeEmail(hhPath, hhPathToDelete);
-	}
-
-	/**
-	 * This function takes a path, a target to delete, and a goal. It then gets the id by email, and if the id by email
-	 * is not null, it sets the specification api to false and the goal, and then for each map in the ids by email, it
-	 * sets the account id to the string value of the id in the map, and then sets the response to the delete request of
-	 * the target to delete and the account id
-	 *
-	 * @param path           the path to the file containing the email addresses
-	 * @param targetToDelete the target to delete, for example, /v1/accounts/
-	 */
-	public void removeEmail(String path, String targetToDelete) {
-		String integration = "integration";
-		String idParam = targetToDelete.contains(integration) ? "id" : "Id";
-		List<Map<String, String>> idsByEmail = getIdByEmail(path);
-		if (idsByEmail != null) {
-			idsByEmail.forEach(stringStringMap -> {
-				String accountId = String.valueOf(stringStringMap.get(idParam));
-				if (targetToDelete.contains("Member")) {
-					this.requestFactory.makeRequest(2.0F)
-									.body("{}")
-									.delete(targetToDelete + accountId);
-				} else if (targetToDelete.contains(integration)) {
-					this.requestFactory.makeRequest()
-									.body("{}")
-									.delete(path + accountId);
-				} else {
-					this.requestFactory.makeRequest()
-									.body("{}")
-									.delete(targetToDelete + accountId);
-				}
-			});
-		}
-	}
-
-	/**
-	 * This function is used to get the id of a user by email
-	 *
-	 * @param path the path to the resource you want to get
-	 * @return A list of maps.
-	 */
-	public List<Map<String, String>> getIdByEmail(String path) {
-		List<Map<String, String>> idsList = null;
-		Response response = requestFactory.makeRequest().get(path);
-		try {
-			if (!path.contains("integration")) {
-				idsList = JsonPath.from(response.asString()).get("value");
-			} else {
-				idsList = JsonPath.from(response.asString()).get("result");
-			}
-
-		} catch (Exception e) {
-			return Collections.emptyList();
-		}
-		return idsList;
-	}
-
-	/**
-	 * This function creates a URL
-	 * <a href="https://app-qa.incomelaboratory.com/dashboard/household/9721/plan-compare">...</a>
-	 *
-	 * @return the URL created as string
-	 */
-	public static String createPlanUrl(String hhAccountId) {
-		return DataConstant.BASE_EDIT_HOUSEHOLD_PLAN_URL + hhAccountId + "/plans";
-	}
-
-	/**
-	 * This function creates a URL
-	 * <a href="https://app-qa.incomelaboratory.com/dashboard/household/9721/plan-compare">...</a>
-	 *
-	 * @return the URL created as string
-	 */
-	public static String createPlanDashboardUrl(String hhAccountId) {
-		String dashboard = "/plans/household-plan/dashboard";
-		return DataConstant.BASE_EDIT_HOUSEHOLD_PLAN_URL + hhAccountId + dashboard;
-	}
-
-	public static String createEditHouseholdPlanUrl(String hhAccountId, String planId) {
-		return DataConstant.BASE_EDIT_HOUSEHOLD_PLAN_URL + hhAccountId + "/plans/" + planId + "/edit?from=newPlanDashboard";
 	}
 
 	/**
@@ -557,21 +337,6 @@ public class HelperMethods {
 	}
 
 	/**
-	 * If the value is true, then the function will execute a JavaScript command to set the local storage item
-	 * "disablePendo" to true. If the value is false, then the function will execute a JavaScript command to set the local
-	 * storage item "disablePendo" to false
-	 *
-	 * @param value true or false
-	 */
-	public void handlePendo(boolean value) {
-		if (value) {
-			javaScriptWebDriver().executeScript("localStorage.setItem(\"disablePendo\", true)");
-		} else {
-			javaScriptWebDriver().executeScript("localStorage.setItem(\"disablePendo\", false)");
-		}
-	}
-
-	/**
 	 * Create a JavaScript driver
 	 *
 	 * @return driver to execute javascript scripts
@@ -582,16 +347,6 @@ public class HelperMethods {
 		} else {
 			throw new IllegalStateException("This driver does not support JavaScript...!");
 		}
-	}
-
-	/**
-	 * This function will set the local storage value of the automation key to the correct value for the environment that is being tested
-	 */
-	public void handleCaptcha() {
-		String token = getEnvironmentVariable(CAPTCHA_LOCAL_STORAGE_VALUE);
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("function myFunction(token) { " + "var qaValue = token; " + "localStorage.setItem(\"automationKey\", qaValue);" + "} " +
-						"myFunction(arguments[0]);", token);
 	}
 
 	public boolean isElementEnabled(WebElement element) {
@@ -639,183 +394,8 @@ public class HelperMethods {
 		}
 	}
 
-	/**
-	 * It waits for the element to be present, then scrolls to it
-	 *
-	 * @param element The element to scroll to.
-	 */
-	public void scrollToElement(WebElement element) {
-		if (environments.equalsIgnoreCase(localEnvironment)) {
-			waitBlockUIDisappear();
-		}
-		waitForElementPresentLong(element);
-		javaScriptWebDriver()
-						.executeScript("arguments[0].scrollIntoView();", element);
-	}
-
-	/**
-	 * taking a screenshot
-	 *
-	 * @param name name of screenshot where will be saved in the screenshot folder.
-	 */
-	public void takePicture(String name, WebDriver driver) {
-		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		try {
-
-			FileUtils.copyFile(screenshot, new File(screenshotsPath + name + ".png"));
-		} catch (IOException e) {
-			throw new RuntimeException(e.getMessage());
-		}
-	}
-
-	/**
-	 * taking a screenshot
-	 *
-	 * @param name name of screenshot where will be saved in the screenshot folder.
-	 */
-	public void takePicture(String name) {
-		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileUtils.copyFile(screenshot, new File(screenshotsPath + name + ".png"));
-		} catch (IOException e) {
-			throw new RuntimeException(e.getMessage());
-		}
-	}
-
-	/**
-	 * The twoFactorAuth method gets the secret key provided by readQRMfa() and generates a related authentication code.
-	 *
-	 * @param secreteKey it's the secrete QR key
-	 * @return the auth code
-	 */
-	public String twoFactorAuth(String secreteKey) {
-//		Totp totp = null;
-//		totp = new Totp(secreteKey);
-//		return totp.now();
-		return ";";
-	}
-
-	/**
-	 * This readQRMfa method read the QR and take from there the secrete key
-	 *
-	 * @param name it's the name relate with the picture that will be saved
-	 * @return return the key secrete related with the QR
-	 */
-	public String readQRMfa(String name) {
-//		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.copyFile(file, new File(screenshotsPath + name + ".png"));
-//			BufferedImage bufferedImage = ImageIO.read(file);
-//			LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
-//			BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-//			Result result = new MultiFormatReader().decodeWithState(bitmap);
-//			Pattern pattern = Pattern.compile("secret=([^&]+)");
-//			Matcher matcher = pattern.matcher(result.getText());
-//			if (matcher.find()) {
-//				return matcher.group(1);
-//			} else {
-//				throw new RuntimeException("Secret value not found.");
-//			}
-//		} catch (IOException e) {
-//			throw new RuntimeException("Could not decode QR Code, IOException :: " + e.getMessage());
-//		} catch (NotFoundException e) {
-//			throw new RuntimeException(e.getMessage());
-//		}
-		return ";";
-	}
-
-	/**
-	 * It deletes all files in a folder that contain a specific string
-	 *
-	 * @param folder   The folder where the files are located.
-	 * @param fileName The name of the file you want to delete.
-	 */
-	public static void deleteFilesIntoSpecificFolder(File folder, String fileName) {
-		File[] files = folder.listFiles();
-		if (files != null) {
-			for (File f : files) {
-				if (f.getName().contains(fileName)) {
-					f.deleteOnExit();
-				}
-			}
-		}
-	}
-
-	/**
-	 * This function will click on an element, wait for a blockUI to disappear if is in the LOCAL environment, and then wait for another element to
-	 * appear. If the element does not appear, it will click on the element again and wait for the element to appear. It
-	 * will do this for a specified number of iterations
-	 *
-	 * @param elementToClick The element you want to click
-	 * @param elementToWait  The element that you want to wait for to appear.
-	 * @param iterations     The number of times you want to click the element.
-	 * @param page           The page object that contains the element to click.
-	 */
-	public void clickWithIterations(WebElement elementToClick, WebElement elementToWait, int iterations, Object page) {
-		if (environments.equalsIgnoreCase(localEnvironment)) {
-			waitBlockUIDisappear();
-		}
-		IntStream.range(0, iterations)
-						.filter(i -> {
-							clickWithActions(elementToClick);
-							return isElementPresent(elementToWait);
-						})
-						.findFirst();
-
-		if (!isElementPresent(elementToWait)) {
-			PageFactory.initElements(driver, page);
-		}
-	}
-
-	public String getAnyAttributeValue(WebElement element, String goal) {
-		waitForElements(Constant.LONG_TIMEOUT);
-		return element.getAttribute(goal);
-	}
-
-	public void refreshPage() {
-		driver.navigate().refresh();
-	}
-
-	/**
-	 * It waits for the element to be present, then waits for it to be clickable, then returns the element
-	 *
-	 * @param xpath The xpath of the element you want to create a WebElement for.
-	 * @return WebElement
-	 */
-	public WebElement createWebElement(String xpath) {
-		WebElement webElement = driver.findElement(By.xpath(xpath));
-		try {
-			waitForElementPresentLongest(webElement);
-			waitForElementClickableLong(webElement);
-			return webElement;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return webElement;
-	}
-
 	public void waitForElementPresentLongest(WebElement element) {
 		waitForElementPresent(element, Constant.LONGEST_TIMEOUT, driver);
-	}
-
-	public boolean isExistWebElement(String xpath) {
-		try {
-			WebElement webElement = driver.findElement(By.xpath(xpath));
-			waitForElementPresentLongest(webElement);
-			waitForElementClickableLong(webElement);
-			return driver.findElement(By.xpath(xpath)).isDisplayed();
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
-	public boolean isElementDisplayed(WebElement element, int time) {
-		try {
-			waitForElements(time);
-			return element.isDisplayed();
-		} catch (Exception ex) {
-			return false;
-		}
 	}
 
 	/**
@@ -837,20 +417,6 @@ public class HelperMethods {
 		}
 	}
 
-	public boolean isElementDisabled(WebElement element) {
-		return element.getAttribute("class").contains("disabled");
-	}
-
-	public boolean isSuccessMessagePresent(String action) {
-		waitForElementPresentLongest(SUCCESS_MESSAGE);
-		return getText(SUCCESS_MESSAGE).contains(action);
-	}
-
-	public boolean waitForLoadFinished() {
-		waitForElements(Constant.SHORT_TIMEOUT);
-		return true;
-	}
-
 	/**
 	 * Waits for the element to finish loading and become clickable.
 	 *
@@ -860,14 +426,6 @@ public class HelperMethods {
 	public void waitElementFinishes(WebElement element, WebElement clickable) {
 		while (!isElementExistWaitLongTime(element)) {
 			waitForElementClickableLong(clickable);
-		}
-	}
-
-	public boolean isElementEnabledMinimumTime(WebElement element) {
-		try {
-			return element.isEnabled();
-		} catch (org.openqa.selenium.StaleElementReferenceException ex) {
-			return false;
 		}
 	}
 
@@ -890,23 +448,6 @@ public class HelperMethods {
 		return element.getAttribute("value");
 	}
 
-	public void waitLoaderFinishes() {
-		waitElementFinishes(LOAD, SUCCESS_MESSAGE);
-	}
-
-	/**
-	 * Swipe one slide
-	 *
-	 * @param element slider to move,
-	 * @param x       will be moved starting from the current x position,
-	 * @param y       will be moved starting from the current x position
-	 *                (-130=1,-50=2,20=3,100=4,130-5)
-	 */
-	public void swiperSlider(WebElement element, int x, int y) {
-		Actions actions = new Actions(driver);
-		actions.dragAndDropBy(element, x, y).build().perform();
-	}
-
 	/**
 	 * It creates a random double between zero and one, and then formats it to two decimal places
 	 *
@@ -927,25 +468,6 @@ public class HelperMethods {
 		element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
 		element.sendKeys(Keys.chord("a", Keys.BACK_SPACE));
 		element.sendKeys(Keys.DELETE);
-	}
-
-	/**
-	 * This function takes in an enum and returns a string
-	 *
-	 * @param planStep This is the step you want to delete.
-	 * @return The value of the key that is passed in.
-	 */
-	public static String getStep(TargetPlansToDelete planStep) {
-		HashMap<Enum<TargetPlansToDelete>, String> steps = new HashMap<>();
-		steps.put(TargetPlansToDelete.planLiabilities, "/liabilities");
-		steps.put(TargetPlansToDelete.planSavings, "/cashflows");
-		steps.put(TargetPlansToDelete.planBaselineExpenses, "/baselineExpenses");
-		steps.put(TargetPlansToDelete.planOtherExpenses, "/budgets");
-		steps.put(TargetPlansToDelete.planRetirementIncomeLegacy, "/retirement");
-		steps.put(TargetPlansToDelete.planRetirementPowerPlanning, "/retirement");
-		steps.put(TargetPlansToDelete.taxSettings, "/tax-settings");
-		steps.put(TargetPlansToDelete.planPortfolioInvestment, "/portfolios");
-		return steps.get(planStep);
 	}
 
 	/**
