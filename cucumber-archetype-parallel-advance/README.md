@@ -96,12 +96,12 @@ Here is an example of how you would use the commands:
    mvn test -Dcucumber.filter.tags="@Regression"
    ```
 
-2. Generate Allure report:
+2. Generate an Allure report: this going to generate a report with the name `index.html` in the `target/site/` directory.
    ```sh
    mvn allure:report
    ```
 
-3. Serve Allure report:
+3. Serve an Allure report: this will open the report in the browser. and Press <Ctrl+C> to exit the server.
    ```sh
    mvn allure:serve
    ```
