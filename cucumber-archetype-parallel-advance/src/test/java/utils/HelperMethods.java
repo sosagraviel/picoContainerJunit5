@@ -1,13 +1,8 @@
 package utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -15,8 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -32,10 +25,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.constants.Constant;
-import utils.constants.DataConstant;
 import utils.constants.DataConstantQueries;
-import utils.enums.TargetEmailToDelete;
-import utils.enums.TargetPlansToDelete;
 
 import java.io.File;
 import java.io.FileReader;
@@ -46,7 +36,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,9 +45,7 @@ import java.util.concurrent.locks.LockSupport;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-import static utils.constants.DataConstant.CAPTCHA_LOCAL_STORAGE_VALUE;
 import static utils.constants.DataConstant.PLATFORM_GOAL_EXECUTION_TEST;
-import static utils.enums.TargetEmailToDelete.accountIncluded;
 
 @Getter
 @Setter
@@ -192,29 +179,17 @@ public class HelperMethods {
 	 * @return A ChromeOptions object
 	 */
 	public static ChromeOptions chromeOptionsConfig() {
-		Map<String, Object> prefs = new HashMap<>();
-		prefs.put("download.default_directory", System.getProperty("user.dir") + File.separator + "downloads" + File.separator + "ActualPdf");
 		ChromeOptions options = new ChromeOptions();
-		options.setExperimentalOption("prefs", prefs);
-		//this block should be commented to execute in aws through console
 		options.addArguments("--remote-allow-origins=*");
 		options.addArguments("--disable-browser-side-navigation");
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--disable-gpu");
-		if (!getEnvironmentVariable(PLATFORM_GOAL_EXECUTION_TEST).equalsIgnoreCase(AWS) && !getEnvironmentVariable(PLATFORM_GOAL_EXECUTION_TEST).equalsIgnoreCase(localEnvironment)) {
+		if (!getEnvironmentVariable(PLATFORM_GOAL_EXECUTION_TEST).equalsIgnoreCase(localEnvironment)) {
 			options.addArguments("--headless");
 		}
-		//TO HERE
 		options.addArguments("window-size=1980,1080");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--disable-setuid-sandbox");
-		//this block should be commented to execute in local
-		if (!getEnvironmentVariable(PLATFORM_GOAL_EXECUTION_TEST).equalsIgnoreCase(localEnvironment)) {
-			options.setCapability("browserName", "chrome");
-			options.setCapability("browserVersion", "latest");
-			options.setCapability("platformName", "windows");
-		}
-		//TO HERE
 		return options;
 	}
 

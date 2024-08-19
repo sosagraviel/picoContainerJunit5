@@ -1,7 +1,7 @@
 @Regression @Login
 Feature: Login
 
-  @Logins
+  @Login
   Scenario: Login successful with correct credentials
     Given An "normalAccount" is logged in the system
     When Login page is displayed

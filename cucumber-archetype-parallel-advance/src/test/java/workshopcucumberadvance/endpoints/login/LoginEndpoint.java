@@ -15,8 +15,7 @@ public class LoginEndpoint {
 	protected RequestFactory requestFactory;
 	String pathIdToken = "AuthenticationResult.IdToken";
 
-	public LoginEndpoint(RequestFactory requestFactory, ScenarioContextInfoHolder context) {
-		this.context = context;
+	public LoginEndpoint(RequestFactory requestFactory) {
 		this.requestFactory = requestFactory;
 	}
 
