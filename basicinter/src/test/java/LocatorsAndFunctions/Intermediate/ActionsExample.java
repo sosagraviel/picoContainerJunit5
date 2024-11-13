@@ -13,7 +13,7 @@ public class ActionsExample {
     public void dragAndDropTest() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://seleniumjavalocators.neocities.org/pages/drag-and-drop");
+        driver.get("https://seleniumjavalocators.neocities.org/pages/actions");
 
         WebElement draggable = driver.findElement(By.id("draggable"));
         WebElement container = driver.findElement(By.id("container"));
@@ -46,7 +46,7 @@ public class ActionsExample {
         driver.close();
     }
     @Test
-    public void contextClickTest() throws InterruptedException {
+    public void contextClickTestOrRightClick() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://seleniumjavalocators.neocities.org/pages/actions");
