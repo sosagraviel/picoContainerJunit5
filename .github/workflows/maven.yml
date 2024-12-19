@@ -33,7 +33,7 @@ jobs:
 
     # Install dependencies and run tests
     - name: Run tests with Maven
-      run: mvn clean test allure:report
+      run: mvn allure:report
 
     # Publish Allure report
     - name: Publish Allure Report
