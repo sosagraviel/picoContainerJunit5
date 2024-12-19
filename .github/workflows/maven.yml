@@ -32,7 +32,8 @@ jobs:
           export PASSWORD=Carolina123.
           export PASSWORD_SUPERADMIN=Carolina123.
           export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-          mvn test -Dcucumber.filter.tags="@ExampleLogin"
+          mvn test
+          
       - name: Debug Check Features Directory
         run: |
           ls -R ./cucumber-archetype-parallel-advance/src/test/resources/
