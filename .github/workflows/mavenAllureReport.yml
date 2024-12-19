@@ -1,0 +1,76 @@
+name: Run Selenium Tests with Allure Reports
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: null
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up JDK 20
+      - name: Set up JDK 20
+        uses: actions/setup-java@v4
+        with:
+          java-version: "20"
+          distribution: temurin
+
+      # Cache Maven dependencies
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/cucumber-archetype-parallel-advance/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+            
+      # Execute tests
+      - name: Execute Tests
+        working-directory: ./cucumber-archetype-parallel-advance
+        run: |
+          export ENVIRONMENTS=QA
+          export PASSWORD=Carolina123.
+          export PASSWORD_SUPERADMIN=Carolina123.
+          export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
+          mvn test -Dcucumber.filter.tags="@Logins"
+          
+      # Debug: Check feature files
+      - name: Debug Check Features Directory
+        run: |
+          ls -R ./cucumber-archetype-parallel-advance/src/test/resources/
+          ls -R ./cucumber-archetype-parallel-advance/src/test/java/
+          
+      # Generate Allure report
+      - name: Generate Allure Report
+        working-directory: ./cucumber-archetype-parallel-advance
+        run: mvn io.qameta.allure:allure-maven:2.10.0:report
+
+      # Copy Allure Report to docs Folder
+      - name: Copy Allure Report to docs Folder
+        run: |
+          mkdir -p ./docs
+          cp -R ./cucumber-archetype-parallel-advance/target/site/allure-maven-plugin/* ./docs/
+
+      # Commit and Push Allure Report to docs
+      - name: Commit and Push Allure Report
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add ./docs
+          git commit -m "Update Allure Report"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      # Publish Allure Report (optional artifact upload)
+      - name: Publish Allure Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: cucumber-archetype-parallel-advance/target/site/allure-maven-plugin/
