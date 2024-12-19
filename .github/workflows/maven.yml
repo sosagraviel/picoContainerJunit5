@@ -43,9 +43,6 @@ jobs:
         working-directory: ./cucumber-archetype-parallel-advance
         run: mvn io.qameta.allure:allure-maven:2.10.0:report
         
-      - name: Debug List Files in Target Directory
-        run: ls -R ls -R cucumber-archetype-parallel-advance/target/site/
-        
       - name: Publish Allure Report
         uses: actions/upload-artifact@v3
         with:
