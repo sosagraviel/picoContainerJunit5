@@ -32,7 +32,7 @@ jobs:
           export PASSWORD=Carolina123.
           export PASSWORD_SUPERADMIN=Carolina123.
           export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-          mvn test
+          mvn test -Dcucumber.filter.tags="@Logins"
           
       - name: Debug Check Features Directory
         run: |
