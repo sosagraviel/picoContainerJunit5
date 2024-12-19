@@ -40,7 +40,7 @@ jobs:
           ls -R ./cucumber-archetype-parallel-advance/src/test/java/
           
       - name: Generate Allure Report
-        working-directory: ./cucumber-archetype-parallel-advance/target
+        working-directory: ./cucumber-archetype-parallel-advance
         run: mvn io.qameta.allure:allure-maven:2.10.0:report
         
       - name: Debug List Files in Target Directory
