@@ -45,10 +45,6 @@ jobs:
     - name: Debug Check Features Directory
       run: ls -R ./cucumber-archetype-parallel-advance/src/test/resources/workshopcucumberadvance/
 
-    # Debug: Check test results
-    - name: Debug Check Test Results
-      run: ls -R ./cucumber-archetype-parallel-advance/target/surefire-reports/
-
     # Generate Allure report
     - name: Generate Allure Report
       working-directory: ./cucumber-archetype-parallel-advance
