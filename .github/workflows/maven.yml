@@ -33,25 +33,25 @@ jobs:
 
     # Execute tests with custom environment variables
     - name: Execute Tests
+      working-directory: ./advance
       run: |
         export ENVIRONMENTS=QA
         export PASSWORD=Carolina123.
         export PASSWORD_SUPERADMIN=Carolina123.
         export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
         mvn test -Dcucumber.filter.tags="@Login"
-      working-directory: ./advance
 
     # Debug: Check test results
-    - name: Debug: Check test results
+    - name: Debug Check Test Results
       run: ls -R ./advance/target/surefire-reports/
 
     # Generate Allure report
     - name: Generate Allure Report
-      run: mvn io.qameta.allure:allure-maven:2.10.0:report
       working-directory: ./advance
+      run: mvn io.qameta.allure:allure-maven:2.10.0:report
 
     # Debug: List files in target directory
-    - name: Debug: List files in target directory
+    - name: Debug List Files in Target Directory
       run: ls -R ./advance/target/
 
     # Publish Allure Report
