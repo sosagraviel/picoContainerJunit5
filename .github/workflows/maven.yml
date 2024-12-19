@@ -34,12 +34,7 @@ jobs:
     # Execute tests with custom environment variables
     - name: Execute Tests
       working-directory: ./cucumber-archetype-parallel-advance
-      run: |
-        export ENVIRONMENTS=QA
-        export PASSWORD=Carolina123.
-        export PASSWORD_SUPERADMIN=Carolina123.
-        export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-        mvn test -Dcucumber.filter.tags="@Login"
+      run: mvn test -Dcucumber.filter.tags="@Login"
 
     # Debug: Check features directory
     - name: Debug Check Features Directory
