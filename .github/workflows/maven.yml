@@ -15,7 +15,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # Set up JDK 21
+    # Set up JDK
     - name: Set up JDK 20
       uses: actions/setup-java@v4
       with:
@@ -39,11 +39,13 @@ jobs:
         export PASSWORD=Carolina123.
         export PASSWORD_SUPERADMIN=Carolina123.
         export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-        mvn test -Dcucumber.filter.tags="@Logins"
+        mvn test -Dcucumber.filter.tags="@Login" -e -X
 
-    # Debug: Check test results
+    # Debug: Check features directory
     - name: Debug Check Features Directory
-      run: ls -R cucumber-archetype-parallel-advance/src/test/resources/workshopcucumberadvance/
+      run: |
+        ls -R cucumber-archetype-parallel-advance/src/test/resources/
+        ls -R cucumber-archetype-parallel-advance/src/test/java/
 
     # Generate Allure report
     - name: Generate Allure Report
