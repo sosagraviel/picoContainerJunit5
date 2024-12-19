@@ -33,7 +33,7 @@ jobs:
 
      # Navigate to the specific project folder and run Maven commands
     - name: Run tests and generate Allure report
-      run: mvn clean test io.qameta.allure:allure-maven:2.10.0:report
+      run: mvn allure:report
       working-directory: ./advance
 
     # Publish Allure report
