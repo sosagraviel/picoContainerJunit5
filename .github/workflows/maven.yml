@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '21'
-        distribution: 'temurin' # Temurin supports JDK 21
+        distribution: 'temurin'
 
     # Cache Maven dependencies
     - name: Cache Maven dependencies
@@ -31,14 +31,32 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    # Navigate to the specific project folder and run Maven commands
-    - name: Run tests and generate Allure report
-      run: mvn clean test io.qameta.allure:allure-maven:2.10.0:report
+    # Execute tests with custom environment variables
+    - name: Execute Tests
+      run: |
+        ENVIRONMENTS=QA \
+        PASSWORD=Carolina123. \
+        PASSWORD_SUPERADMIN=Carolina123. \
+        PLATFORM_GOAL_EXECUTION_TEST=LOCAL \
+        mvn test -Dcucumber.filter.tags="@Login"
       working-directory: ./advance
 
-    # Publish Allure report
+    # Debug: Check test results
+    - name: Debug: Check test results
+      run: ls -R ./advance/target/surefire-reports/
+
+    # Generate Allure report
+    - name: Generate Allure Report
+      run: mvn io.qameta.allure:allure-maven:2.10.0:report
+      working-directory: ./advance
+
+    # Debug: List files in target directory
+    - name: Debug: List files in target directory
+      run: ls -R ./advance/target/
+
+    # Publish Allure Report
     - name: Publish Allure Report
       uses: actions/upload-artifact@v3
       with:
-        name: allure-report-${{ github.ref_name }}
+        name: allure-report
         path: ./advance/target/site/allure-report/
