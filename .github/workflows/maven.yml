@@ -43,7 +43,7 @@ jobs:
         
     # Debug: Check test results
     - name: Debug Check Features Directory
-      run: ls -R ./cucumber-archetype-parallel-advance/src/test/resources/features/
+      run: ls -R ./cucumber-archetype-parallel-advance/src/test/resources/workshopcucumberadvance/features/
 
     # Debug: Check test results
     - name: Debug Check Test Results
