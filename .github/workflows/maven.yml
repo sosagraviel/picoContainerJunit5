@@ -38,7 +38,7 @@ jobs:
         export ENVIRONMENTS=QA
         export PASSWORD=Carolina123.
         export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-        mvn test -Dallure.results.directory=./target/allure-results -Dcucumber.filter.tags="@Logins"
+        mvn test -Dcucumber.filter.tags="@Logins"
 
         
     # Debug: Check test results
