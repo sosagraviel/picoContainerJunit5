@@ -38,7 +38,7 @@ jobs:
         PASSWORD=Carolina123. \
         PASSWORD_SUPERADMIN=Carolina123. \
         PLATFORM_GOAL_EXECUTION_TEST=LOCAL \
-        mvn test -Dcucumber.filter.tags="@Login"
+        mvn test -Dcucumber.filter.tags="@Logins"
       working-directory: ./advance
 
     # Debug: Check test results
