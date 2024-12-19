@@ -20,6 +20,6 @@ import static io.cucumber.junit.platform.engine.Constants.FILTER_TAGS_PROPERTY_N
 @ConfigurationParameter(key = PARALLEL_EXECUTION_ENABLED_PROPERTY_NAME, value = "false")
 // this will skip the @SkipThisTag by default or it will execute the tags that you specify
 //"@RunThisTag and not @RunThisTag"
-@ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@ExampleLogin")
+//@ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@ExampleLogin")
 public class RunCucumberTest {
 }
