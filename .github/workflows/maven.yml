@@ -38,7 +38,7 @@ jobs:
         export ENVIRONMENTS=QA
         export PASSWORD=Carolina123.
         export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-        mvn test -Dcucumber.filter.tags="@Logins"
+        mvn test -X -Dcucumber.filter.tags='@Logins'
 
         
     # Debug: Check test results
