@@ -39,7 +39,8 @@ jobs:
         export PASSWORD=Carolina123.
         export PASSWORD_SUPERADMIN=Carolina123.
         export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-        mvn test
+        mvn clean verify -Dcucumber.filter.tags="@Logins"
+
 
         
     # Debug: Check test results
