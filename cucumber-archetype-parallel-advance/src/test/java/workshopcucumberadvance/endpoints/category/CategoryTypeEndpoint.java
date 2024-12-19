@@ -84,7 +84,7 @@ public class CategoryTypeEndpoint {
 	}
 
 	/**
-	 * this wipeOldCategories reruns the category list and deletes the category who contains the automation name
+	 * this wipeOldCategories method sends a delete request to delete all categories that contain name Automation from the web
 	 */
 	public void wipeOldCategories() {
 		List<LinkedHashMap<String, ?>> listOfGroupsIdFromSpecificFirm = JsonPath.from(getAllCategories().asString()).get();

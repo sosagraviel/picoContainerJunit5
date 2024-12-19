@@ -12,4 +12,5 @@ public class DataConstantQueries {
 	public static final String PATH_CATEGORY_CREATE = "/api/category-type/create";
 	public static final String PATH_DELETE_CATEGORY_TYPE = "/api/category-type/delete/";
 	public static final String QUERY_TO_GET_ALL_CATEGORIES = "/api/category-type/";
+	public static final String EXAMPLE_BODY = "src/test/java/workshopcucumberadvance/entities/PayloadBody.json";
 }

@@ -24,7 +24,7 @@ ENVIRONMENTS=QA PASSWORD=Carolina123 PASSWORD_SUPERADMIN=Carolina123 PLATFORM_GO
 #### Run Login Tests Excluding Specific Tag
 
 ```sh
-ENVIRONMENTS=QA PASSWORD=Carolina123 PASSWORD_SUPERADMIN=Carolina123 PLATFORM_GOAL_EXECUTION_TEST=LOCAL mvn test -Dcucumber.filter.tags="@Logins and not @RunThisTag"
+ENVIRONMENTS=QA PASSWORD=Carolina123. PASSWORD_SUPERADMIN=Carolina123. PLATFORM_GOAL_EXECUTION_TEST=LOCAL mvn test -Dcucumber.filter.tags="@Logins and not @RunThisTag"
 ```
 
 ## Generating Allure Reports

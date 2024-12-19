@@ -13,7 +13,7 @@ import utils.enums.RegisterAccounts;
 public class LoginEndpoint {
 	ScenarioContextInfoHolder context;
 	protected RequestFactory requestFactory;
-	String pathIdToken = "AuthenticationResult.IdToken";
+	String pathIdToken = "token";
 
 	public LoginEndpoint(RequestFactory requestFactory) {
 		this.requestFactory = requestFactory;

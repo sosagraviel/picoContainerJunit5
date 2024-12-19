@@ -2,16 +2,17 @@ package utils.constants;
 
 import utils.ReadProperties;
 
-import static utils.HelperMethods.currentDateFull;
 import static utils.HelperMethods.getPassword;
-import static utils.HelperMethods.randomString;
 
 public class DataConstant {
+
 	private DataConstant() {
 
 	}
 
 	public static final String PASSWORD = getPassword("PASSWORD");
+	public static final String PASSWORD_EXAMPLE = "PASSWORD_EXAMPLE";
+	public static final String USER_EXAMPLE = "USER_EXAMPLE";
 	public static final String BASE_URL = "https://api.club-administration.qa.qubika.com/";
 	public static final String PASSWORD_SUPER_ADMIN = getPassword("PASSWORD_SUPERADMIN");
 	public static final String EMAIL_SUPER_ADMIN = ReadProperties.getInstance().getProperty("EMAIL_SUPERADMIN");

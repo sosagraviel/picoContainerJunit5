@@ -15,9 +15,10 @@
         <cucumber.version>7.18.0</cucumber.version>
         <junit.version>5.10.0</junit.version>
         <slf4j.version>2.0.12</slf4j.version>
-        <browser.driver.version>4.23.1</browser.driver.version>
+        <browser.driver.version>4.27.0</browser.driver.version>
         <cucumber.filter.tags>""</cucumber.filter.tags>
         <io.rest-assured.version>5.5.0</io.rest-assured.version>
+        <allure.version>2.29.1</allure.version>
     </properties>
 
     <dependencyManagement>
@@ -100,6 +101,13 @@
             </exclusions>
         </dependency>
         <!-- Excludes dependencies -->
+        <!-- Excludes dependencies -->
+        <!-- Google Gson -->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.code.gson</groupId>-->
+        <!--            <artifactId>gson</artifactId>-->
+        <!--            <version>2.11.0</version>-->
+        <!--        </dependency>-->
         <!-- Jackson Databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -121,7 +129,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>5.4.0</version>
+            <version>${io.rest-assured.version}</version>
         </dependency>
         <!-- Selenium -->
         <dependency>
@@ -163,7 +171,7 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
-            <version>7.18.0</version>
+            <version>7.20.1</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -174,22 +182,22 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
-            <version>2.27.0</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
-            <version>2.27.0</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-rest-assured</artifactId>
-            <version>2.27.0</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
-            <version>2.27.0</version>
+            <version>${allure.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -222,7 +230,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.12.0</version>
+                <version>2.15.2</version>
                 <executions>
                     <execution>
                         <goals>

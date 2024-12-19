@@ -1,12 +1,12 @@
 package utils;
 
-import workshopcucumberadvance.Pages.Category.CategoryPage;
-import workshopcucumberadvance.Pages.Login.LoginPage;
-import workshopcucumberadvance.Pages.MenuPage;
 import io.cucumber.java.Scenario;
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import workshopcucumberadvance.Pages.Category.CategoryPage;
+import workshopcucumberadvance.Pages.Login.LoginPage;
+import workshopcucumberadvance.Pages.MenuPage;
 
 @Data
 public class DriverFactory {
@@ -16,7 +16,7 @@ public class DriverFactory {
 	private MenuPage menuPage;
 	private RequestFactory requestFactory;
 	private HelperMethods helperMethods;
-//	private ForgotPasswordPage forgotPasswordPage;
+	//	private ForgotPasswordPage forgotPasswordPage;
 	private CategoryPage categoryPage;
 //	private NavMenuPage navMenuPage;
 //	private NavBreadCrumbsPage navBreadCrumbsPage;

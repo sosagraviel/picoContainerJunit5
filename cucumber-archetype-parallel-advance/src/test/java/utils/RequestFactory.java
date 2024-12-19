@@ -14,6 +14,10 @@ public class RequestFactory {
 	static final String contentTypeSso = "application/x-amz-json-1.1";
 	static final String headerApiVersion = "x-api-version";
 
+	/**
+	 * this static block is to add the AllureRestAssured
+	 * filter to the request factory in order to save the request and generate the report with Allure and more details
+	 */
 	static {
 		RestAssured.filters(new AllureRestAssured());
 	}
