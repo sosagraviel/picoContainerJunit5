@@ -33,7 +33,7 @@ jobs:
 
     # Execute tests with custom environment variables
     - name: Execute Tests
-      working-directory: ./cucumber-archetype-parallel-advance
+      working-directory: ./cucumber-archetype-parallel-advance/
       run: |
         export ENVIRONMENTS=QA
         export PASSWORD=Carolina123.
@@ -49,7 +49,7 @@ jobs:
 
     # Generate Allure report
     - name: Generate Allure Report
-      working-directory: ./cucumber-archetype-parallel-advance
+      working-directory: ./cucumber-archetype-parallel-advance/
       run: mvn io.qameta.allure:allure-maven:2.10.0:report
 
     # Debug: List files in target directory
