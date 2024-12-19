@@ -32,7 +32,7 @@ public class Functionalities {
             driver.close();
         }
         @Test
-        public void navigateAndFindElements() throws InterruptedException {
+        public void navigateAndFindElements() {
             WebDriver driver = new ChromeDriver();
 
             driver.get("https://seleniumjavalocators.neocities.org/");

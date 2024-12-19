@@ -1,47 +1,47 @@
 package LocatorsAndFunctions.Intermediate;
 
-import java.io.IOException;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import Utilities.Utilities;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DownloadFile {
 	WebDriver driver;
-	String url = "https://demo.guru99.com/test/yahoo.html";
+	String url = "file:///Users/gravielsosa/Desktop/download.html";
+
 	@BeforeMethod
 	public void setUp() {
-		driver = new ChromeDriver();
+		Map<String, Object> prefs = new HashMap<>();
+		prefs.put("download.default_directory", System.getProperty("user.dir") + File.separator + "downloads");
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", prefs);
+		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
-		
+
 		driver.get(url);
-		
-	}
-	
-	@Test
-	public void downloadFile() {
-		WebElement messengerDownload = driver.findElement(By.id("messenger-download"));
-		String messengerDownloadHref = messengerDownload.getAttribute("href");
-		System.out.println(messengerDownloadHref);
-		
-		String wget_command = 
-        		"cmd /c D:\\EducacionIT-70885\\ProyectoIntegrador\\src\\test\\resources\\wget.exe -P D:\\EducacionIT-70885\\ProyectoIntegrador\\src\\test\\resources\\downloads\\ --no-check-certificate " + messengerDownloadHref;
-		
-		Utilities.downloadFile(wget_command);
 
 	}
-	
+
+	@Test
+	public void downloadFile() {
+		WebElement messengerDownload = driver.findElement(By.id("downloadButton"));
+		String messengerDownloadHref = messengerDownload.getText();
+		System.out.println(messengerDownloadHref);
+		messengerDownload.click();
+	}
+
 	@AfterMethod
-	public void finTest(ITestContext context) throws IOException, InvalidFormatException {
+	public void finTest(ITestContext context) {
 		driver.close();
-		
+
 	}
 }

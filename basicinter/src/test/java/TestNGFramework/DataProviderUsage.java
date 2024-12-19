@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -35,7 +36,7 @@ public class DataProviderUsage {
         emailLoginInput.sendKeys(email);
 
         WebElement passwordLoginInput = driver.findElement(By.id("passwd"));
-        passwordLoginInput.sendKeys(email);
+        passwordLoginInput.sendKeys(password);
 
         WebElement signinBtn = driver.findElement(By.id("SubmitLogin"));
         signinBtn.click();
@@ -44,6 +45,7 @@ public class DataProviderUsage {
         Assert.assertEquals(authenticationTitle.getText(), "AUTHENTICATION");
 
     }
+
     @Test(dataProvider="usuariosInvalidosExcel", dataProviderClass = DataProviderExample.class)
     public void inicioSesionInvalidoExcel(String email, String password) {
         WebElement loginBtn = driver.findElement(By.className("login"));
@@ -53,7 +55,7 @@ public class DataProviderUsage {
         emailLoginInput.sendKeys(email);
 
         WebElement passwordLoginInput = driver.findElement(By.id("passwd"));
-        passwordLoginInput.sendKeys(email);
+        passwordLoginInput.sendKeys(password);
 
         WebElement signinBtn = driver.findElement(By.id("SubmitLogin"));
         signinBtn.click();
