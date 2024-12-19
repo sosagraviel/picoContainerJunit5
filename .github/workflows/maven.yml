@@ -27,13 +27,13 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/cucumber-archetype-parallel-advance/pom.xml') }}
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/qa-selenium-workshop/cucumber-archetype-parallel-advance/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
 
     # Execute tests with custom environment variables
     - name: Execute Tests
-      working-directory: cucumber-archetype-parallel-advance
+      working-directory: /qa-selenium-workshop/cucumber-archetype-parallel-advance
       run: |
         export ENVIRONMENTS=QA
         export PASSWORD=Carolina123.
@@ -44,21 +44,21 @@ jobs:
     # Debug: Check features directory
     - name: Debug Check Features Directory
       run: |
-        ls -R cucumber-archetype-parallel-advance/src/test/resources/
-        ls -R cucumber-archetype-parallel-advance/src/test/java/
+        ls -R /qa-selenium-workshop/cucumber-archetype-parallel-advance/src/test/resources/
+        ls -R /qa-selenium-workshop/cucumber-archetype-parallel-advance/src/test/java/
 
     # Generate Allure report
     - name: Generate Allure Report
-      working-directory: cucumber-archetype-parallel-advance
+      working-directory: /qa-selenium-workshop/cucumber-archetype-parallel-advance
       run: mvn io.qameta.allure:allure-maven:2.10.0:report
 
     # Debug: List files in target directory
     - name: Debug List Files in Target Directory
-      run: ls -R cucumber-archetype-parallel-advance/target/
+      run: ls -R /qa-selenium-workshop/cucumber-archetype-parallel-advance/target/
 
     # Publish Allure Report
     - name: Publish Allure Report
       uses: actions/upload-artifact@v3
       with:
         name: allure-report
-        path: cucumber-archetype-parallel-advance/target/site/allure-report/
+        path: /qa-selenium-workshop/cucumber-archetype-parallel-advance/target/site/allure-report/
