@@ -27,17 +27,19 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/advance/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    # Install dependencies and run tests
-    - name: Run tests with Maven
-      run: mvn allure:report
+     # Navigate to the specific project folder and run Maven commands
+    - name: Run tests and generate Allure report
+      run: mvn clean test io.qameta.allure:allure-maven:2.10.0:report
+      working-directory: ./advance
 
     # Publish Allure report
+    # Publish Allure report to GitHub Actions artifact
     - name: Publish Allure Report
       uses: actions/upload-artifact@v3
       with:
-        name: allure-report
-        path: target/site/allure-report/
+        name: allure-report-${{ github.ref_name }}
+        path: ./advance/target/site/allure-report/
