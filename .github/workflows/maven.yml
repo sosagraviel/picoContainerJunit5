@@ -34,7 +34,12 @@ jobs:
     # Execute tests with custom environment variables
     - name: Execute Tests
       working-directory: ./cucumber-archetype-parallel-advance
-      run: ENVIRONMENTS=QA PASSWORD=Carolina123. PASSWORD_SUPERADMIN=Carolina123. PLATFORM_GOAL_EXECUTION_TEST=LOCAL mvn clean verify test -Dcucumber.options=" -t '@Logins'"
+      run: |
+        ENVIRONMENTS=QA \
+        PASSWORD=Carolina123.\
+        PASSWORD_SUPERADMIN=Carolina123.\
+        PLATFORM_GOAL_EXECUTION_TEST=LOCAL\
+        mvn test -Dcucumber.filter.tags="@Login"
 
         
     # Debug: Check test results
