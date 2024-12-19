@@ -34,11 +34,7 @@ jobs:
     # Execute tests with custom environment variables
     - name: Execute Tests
       run: |
-        ENVIRONMENTS=QA \
-        PASSWORD=Carolina123. \
-        PASSWORD_SUPERADMIN=Carolina123. \
-        PLATFORM_GOAL_EXECUTION_TEST=LOCAL \
-        mvn test -Dcucumber.filter.tags="@Logins"
+        ENVIRONMENTS=QA PASSWORD=Carolina123. PLATFORM_GOAL_EXECUTION_TEST=LOCAL mvn test -Dcucumber.filter.tags="@Login"
       working-directory: ./advance
 
     # Debug: Check test results
