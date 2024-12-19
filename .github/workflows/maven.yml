@@ -37,9 +37,13 @@ jobs:
       run: |
         export ENVIRONMENTS=QA
         export PASSWORD=Carolina123.
-        export PASSWORD_SUPERADMIN=Carolina123.
         export PLATFORM_GOAL_EXECUTION_TEST=LOCAL
-        mvn test -Dcucumber.filter.tags="@Login"
+        mvn test -Dcucumber.filter.tags="@Logins"
+
+        
+    # Debug: Check test results
+    - name: Debug Check Features Directory
+      run: ls -R ./advance/src/test/resources/features/
 
     # Debug: Check test results
     - name: Debug Check Test Results
