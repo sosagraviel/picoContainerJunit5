@@ -5,7 +5,7 @@ Feature: CategoryAPI
     Given An "normalAccount" is logged in the system
     And User wipes the old categories
 
-  @CategoryAPI
+  @CategoryAPIs
   Scenario: Create category
     When Login page is displayed
     And User completes Email field with "normalAccount" credentials

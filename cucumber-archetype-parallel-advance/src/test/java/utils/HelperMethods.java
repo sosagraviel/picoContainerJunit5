@@ -184,7 +184,7 @@ public class HelperMethods {
 		options.addArguments("--disable-browser-side-navigation");
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--disable-gpu");
-		options.addArguments("--headless");
+//		options.addArguments("--headless");
 		if (!getEnvironmentVariable(PLATFORM_GOAL_EXECUTION_TEST).equalsIgnoreCase(localEnvironment)) {
 			options.addArguments("--headless");
 		}
