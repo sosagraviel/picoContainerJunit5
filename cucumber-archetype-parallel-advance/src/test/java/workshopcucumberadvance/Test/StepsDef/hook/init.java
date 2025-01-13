@@ -2,6 +2,7 @@ package workshopcucumberadvance.Test.StepsDef.hook;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.restassured.specification.RequestSpecification;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,8 @@ import utils.ReadProperties;
 import utils.constants.Constant;
 import utils.context.ScenarioContextInfoHolder;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.time.LocalTime;
 
@@ -28,6 +31,38 @@ public class init {
 		this.context = context;
 		this.driverFactory = driverFactory;
 	}
+
+//	@BeforeAll
+//	public static void setupChainTest() {
+//		try {
+//			String projectDir = System.getProperty("user.dir");
+//			Path chainTestDir = Path.of(projectDir, "target", "chaintest");
+//
+//			// Create directories if they don't exist
+//			if (!Files.exists(chainTestDir)) {
+//				Files.createDirectories(chainTestDir);
+//			}
+//
+//			// Ensure the report file exists and is writable
+//			Path reportFile = chainTestDir.resolve("chaintest-report.json");
+//			if (!Files.exists(reportFile)) {
+//				Files.createFile(reportFile);
+//			}
+//
+//			// Set required permissions
+//			reportFile.toFile().setWritable(true);
+//
+//			// Set system properties
+//			System.setProperty("chaintest.report.dir", chainTestDir.toString());
+//			System.setProperty("chaintest.report.name", "chaintest-report");
+//			System.setProperty("chaintest.report.format", "json");
+//			System.setProperty("chaintest.enabled", "true");
+//
+//		} catch (Exception e) {
+//			System.err.println("Failed to setup ChainTest: " + e.getMessage());
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Before
 	public void initializeTest(Scenario scenario) {

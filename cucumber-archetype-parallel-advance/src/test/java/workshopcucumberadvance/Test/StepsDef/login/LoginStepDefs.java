@@ -38,8 +38,7 @@ public class LoginStepDefs {
 	 *
 	 * @param registerAccounts it's the mail associated with the account
 	 */
-//	@Step("^An \"([^\"]*)\" is logged in the system$")
-//	@Step
+	//	@Step("^An \"([^\"]*)\" is logged in the system$")
 	@Given("^An \"([^\"]*)\" is logged in the system$")
 	public void anAuthorizationUser(RegisterAccounts registerAccounts) {
 		Response response = loginPageEndpoint.anAuthorizedUserLogged(registerAccounts);
