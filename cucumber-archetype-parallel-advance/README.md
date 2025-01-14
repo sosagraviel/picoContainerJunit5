@@ -41,8 +41,17 @@ After running the tests, you can generate and serve the Allure reports using the
 
 it is necessary to run the docker-compose-h2.yml file.
 the command is:
-docker-compose -f docker-compose-h2.yml up it will start the container
-so you could watch the reports in http://localhost:8080
+```sh
+docker compose -f docker-compose-h2.yml up
+```
+it will start the container
+so you can watch the reports in http://localhost:8080
+
+then you can run the next command to stop the container
+
+```sh
+docker compose -f docker-compose-h2.yml down
+```
 
 ### Generate Allure Report
 
