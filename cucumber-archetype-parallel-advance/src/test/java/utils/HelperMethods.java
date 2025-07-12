@@ -1,6 +1,5 @@
 package utils;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,7 +26,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.constants.Constant;
 import utils.constants.DataConstantQueries;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -37,9 +35,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.locks.LockSupport;
 import java.util.function.Supplier;
@@ -653,7 +649,7 @@ public class HelperMethods {
 	public static String wrapJsons(Object[] jsons) {
 		List<Object> wrappedJsons = new ArrayList<>();
 		wrappedJsons.addAll(Arrays.asList(jsons));
-		String json = new Gson().toJson(wrappedJsons).replaceAll("^\\[|\\]$", "");
+		String json = new com.nimbusds.jose.shaded.gson.Gson().toJson(wrappedJsons).replaceAll("^\\[|\\]$", "");
 		return json;
 	}
 	/**

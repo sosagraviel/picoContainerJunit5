@@ -37,20 +37,102 @@ ENVIRONMENTS=QA PASSWORD=Carolina123. PASSWORD_SUPERADMIN=Carolina123. PLATFORM_
 
 After running the tests, you can generate and serve the Allure reports using the following Maven commands.
 
-### Generate a Chain test report
 
-it is necessary to run the docker-compose-h2.yml file.
-the command is:
+# IMPORTANT TO MAKE THE PROJECT WORK
+
+## ChainTest Configuration
+
+### Prerequisites
+Before running tests with ChainTest reporting, you need to start the ChainTest service using Docker.
+
+### Start ChainTest Service
 ```sh
 docker compose -f docker-compose-h2.yml up
 ```
-it will start the container
-so you can watch the reports in http://localhost:8080
+This will start the ChainTest container on port 84.
 
-then you can run the next command to stop the container
+### View ChainTest Reports
+Once the service is running, you can access the reports at:
+```
+http://localhost:84
+```
 
+### Stop ChainTest Service
 ```sh
 docker compose -f docker-compose-h2.yml down
+```
+
+### ChainTest Configuration File
+The project uses ChainTest for additional reporting. The configuration is located in:
+```
+src/test/resources/chaintest.properties
+```
+
+**Important Configuration:**
+```properties
+chaintest.generator.chainlp.host.url=http://localhost:84/
+```
+
+### Common ChainTest Errors and Solutions
+
+#### Error 1: Connection Refused
+```
+java.net.ConnectException: null
+Caused by: java.nio.channels.ClosedChannelException: null
+```
+
+**Cause:** ChainTest service is not running or wrong port configuration.
+
+**Solution:**
+1. Start the ChainTest service:
+   ```sh
+   docker compose -f docker-compose-h2.yml up
+   ```
+2. Verify the service is running:
+   ```sh
+   docker ps
+   ```
+3. Check if the service is accessible:
+   ```sh
+   curl -I http://localhost:84
+   ```
+
+#### Error 2: Wrong Port Configuration
+If you see connection errors but the service is running, check the port configuration in `src/test/resources/chaintest.properties`:
+
+**Current Configuration:**
+```properties
+chaintest.generator.chainlp.host.url=http://localhost:84/
+```
+
+**Alternative Ports:**
+- For MySQL setup: `http://localhost:80/` (uses `chainlp/docker/docker-compose-mysql.yml`)
+- For PostgreSQL setup: `http://localhost:80/` (uses `chainlp/docker/docker-compose-postgres.yml`)
+
+#### Error 3: NullPointerException in ChainTest Plugin
+```
+java.lang.NullPointerException: Cannot invoke "java.net.http.HttpResponse.statusCode()" because "response" is null
+```
+
+**Cause:** ChainTest plugin is enabled but service is not accessible.
+
+**Solution:**
+1. Ensure ChainTest service is running
+2. Check port configuration
+3. Verify network connectivity
+
+#### Disabling ChainTest (Temporary Solution)
+If you need to run tests without ChainTest, you can temporarily disable it by removing the ChainTest plugin from the test runner:
+
+In `src/test/java/workshopcucumberadvance/Test/StepsDef/Runner/RunCucumberTest.java`, comment out the ChainTest plugin:
+
+```java
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, "
+    + "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm, "
+    + "html:target/cucumber-reports/report.html, "
+    + "json:target/cucumber-reports/cucumber.json"
+    // + ", com.aventstack.chaintest.plugins.ChainTestCucumberListener:target/chaintest/chaintest-report.json"
+)
 ```
 
 ### Generate Allure Report

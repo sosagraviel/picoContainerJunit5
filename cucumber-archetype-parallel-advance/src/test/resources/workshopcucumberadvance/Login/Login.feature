@@ -1,7 +1,7 @@
 @Regression @Login
 Feature: Login
 
-  @Login
+  @Logins
   Scenario: Login successful with correct credentials
     Given An "normalAccount" is logged in the system
     When Login page is displayed
@@ -47,10 +47,12 @@ Feature: Login
 
 
   @Login
-  Scenario: Login failed with wrong credentials data-driven
+  Scenario: Login failed with wrong credentials data-driven Example
     When Login page is displayed
     And Login failed with wrong credentials
       | user         | password       |
       | wrong.user   | 12345678       |
       | graviel.sosa | wrong.password |
       | wrong.user   | wrong.password |
+    And User clicks on Login button
+    Then the Toast message is Displayed

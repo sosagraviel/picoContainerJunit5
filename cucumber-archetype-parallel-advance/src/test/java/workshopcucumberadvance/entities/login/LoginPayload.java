@@ -1,15 +1,14 @@
 package workshopcucumberadvance.entities.login;
 
-import com.google.gson.annotations.Expose;
 import lombok.Data;
 import utils.constants.DataConstant;
 import utils.enums.RegisterAccounts;
 
 @Data
 public class LoginPayload {
-	@Expose
+	@com.nimbusds.jose.shaded.gson.annotations.Expose
 	private String email;
-	@Expose
+	@com.nimbusds.jose.shaded.gson.annotations.Expose
 	private String password;
 
 	public LoginPayload(RegisterAccounts registerAccounts) {

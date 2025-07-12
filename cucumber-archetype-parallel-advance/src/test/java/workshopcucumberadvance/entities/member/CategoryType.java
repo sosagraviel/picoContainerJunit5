@@ -1,27 +1,26 @@
-
 package workshopcucumberadvance.entities.member;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class CategoryType {
-	@SerializedName("id")
-	private String mId;
-	@SerializedName("name")
-	private String mName;
-	@SerializedName("parentId")
-	private Object mParentId;
-	@SerializedName("parentName")
-	private Object mParentName;
-	@SerializedName("root")
-	private Boolean mRoot;
+	@JsonProperty("id")
+	private String id;
+	@JsonProperty("name")
+	private String name;
+	@JsonProperty("parentId")
+	private Object parentId;
+	@JsonProperty("parentName")
+	private Object parentName;
+	@JsonProperty("root")
+	private Boolean root;
 
 	public CategoryType(String categoryTypeId, String name) {
-		this.setMId(categoryTypeId);
-		this.setMName(name);
-		this.setMRoot(true);
-		this.setMParentId(null);
-		this.setMParentName(null);
+		this.setId(categoryTypeId);
+		this.setName(name);
+		this.setRoot(true);
+		this.setParentId(null);
+		this.setParentName(null);
 	}
 }

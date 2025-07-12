@@ -1,26 +1,26 @@
 package workshopcucumberadvance.entities.category;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class CategoryTypePayload {
 
-	@SerializedName("name")
-	private String mName;
-	@SerializedName("parentId")
-	private String mParentId;
-	@SerializedName("root")
-	private Boolean mRoot;
+  @JsonProperty("name")
+  private String name;
+  @JsonProperty("parentId")
+  private String parentId;
+  @JsonProperty("root")
+  private Boolean root;
 
-	public CategoryTypePayload(String categoryName) {
-		this.setMName(categoryName);
-		this.setMRoot(true);
-	}
+  public CategoryTypePayload(String categoryName) {
+    this.setName(categoryName);
+    this.setRoot(true);
+  }
 
-	public CategoryTypePayload(String categoryName, String categoryParentId) {
-		this.setMName(categoryName);
-		this.setMParentId(categoryParentId);
-		this.setMRoot(false);
-	}
+  public CategoryTypePayload(String categoryName, String categoryParentId) {
+    this.setName(categoryName);
+    this.setParentId(categoryParentId);
+    this.setRoot(false);
+  }
 }

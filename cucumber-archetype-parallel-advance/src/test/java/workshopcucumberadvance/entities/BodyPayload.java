@@ -1,7 +1,6 @@
 package workshopcucumberadvance.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
